@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@react-email/components": "0.0.25",
+    "bcryptjs": "^2.4.3",
     "mongoose": "^8.6.1",
     "next": "14.2.9",
     "react": "^18",
@@ -19,6 +20,7 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

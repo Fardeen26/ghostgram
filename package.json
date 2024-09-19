@@ -9,16 +9,24 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@ai-sdk/openai": "^0.0.60",
     "@react-email/components": "0.0.25",
+    "ai": "^2.2.30",
     "bcryptjs": "^2.4.3",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.441.0",
     "mongodb": "^6.8.1",
     "mongoose": "^8.6.1",
     "next": "14.2.9",
     "next-auth": "^4.24.7",
+    "openai": "^4.62.1",
     "react": "^18",
     "react-dom": "^18",
     "react-email": "^3.0.1",
     "resend": "^4.0.0",
+    "tailwind-merge": "^2.5.2",
+    "tailwindcss-animate": "^1.0.7",
     "zod": "^3.23.8"
   },
   "devDependencies": {

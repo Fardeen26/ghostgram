@@ -24,6 +24,7 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "dayjs": "^1.11.13",
+    "embla-carousel-react": "^8.3.0",
     "lucide-react": "^0.441.0",
     "mongodb": "^6.8.1",
     "mongoose": "^8.6.1",

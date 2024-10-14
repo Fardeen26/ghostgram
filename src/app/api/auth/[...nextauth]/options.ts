@@ -37,7 +37,7 @@ export const authOptions: NextAuthOptions = {
           } else {
             throw new Error('Incorrect password');
           }
-        } catch (err: any) {
+        } catch (err) {
           throw new Error(err);
         }
       },
@@ -66,7 +66,7 @@ export const authOptions: NextAuthOptions = {
   session: {
     strategy: 'jwt',
   },
-  secret: process.env.NEXTAUTH_SECRET,
+  secret: '3fHfIWXSqdBkyge/FFtvFe18CBUfOOA5vrgJgbrNtzA=',
   pages: {
     signIn: '/sign-in',
   },

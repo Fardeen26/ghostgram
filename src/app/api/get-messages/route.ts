@@ -9,15 +9,16 @@ import { authOptions } from '../auth/[...nextauth]/options';
 export async function GET(request: Request) {
   await dbConnect();
   const session = await getServerSession(authOptions);
-  const _user: User = session?.user;
+  const user: User = session?.user as User;
 
-  if (!session || !_user) {
+  if (!session || !user) {
     return Response.json(
       { success: false, message: 'Not authenticated' },
       { status: 401 }
     );
   }
-  const userId = new mongoose.Types.ObjectId(_user._id);
+  const userId = new mongoose.Types.ObjectId(user._id);
+  console.log("usr id", userId)
   try {
     const user = await UserModel.aggregate([
       { $match: { _id: userId } },
@@ -26,10 +27,21 @@ export async function GET(request: Request) {
       { $group: { _id: '$_id', messages: { $push: '$messages' } } },
     ]).exec();
 
-    if (!user || user.length === 0) {
+    console.log("get message user", user)
+
+    if (!user) {
       return Response.json(
         { success: false, message: 'User not found' },
         { status: 404 }
+      );
+    }
+
+    if(user.length === 0) {
+      return Response.json(
+        { success: true, message: 'Currently there are no messages' },
+        {
+        status: 200,
+        }
       );
     }
 

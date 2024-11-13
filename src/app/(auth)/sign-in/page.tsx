@@ -17,6 +17,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { signInSchema } from '@/schemas/signInSchema';
 import { useToast } from '@/hooks/use-toast';
+import { bricolage_grotesque } from '@/lib/fonts';
 
 export default function SignInForm() {
   const router = useRouter();
@@ -60,13 +61,13 @@ export default function SignInForm() {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-800">
-      <div className="w-full max-w-md p-8 space-y-8 bg-white text-black rounded-lg shadow-md">
+    <div className={`flex justify-center items-center min-h-screen ${bricolage_grotesque}`}>
+      <div className="w-full max-w-xl p-8 space-y-8 text-white rounded-lg shadow-md">
         <div className="text-center">
-          <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl mb-6">
+          <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl mb-5">
             Welcome Back to True Feedback
           </h1>
-          <p className="mb-4 ">Sign in to continue your secret conversations</p>
+          <p className="mb-4">Sign in to continue your secret conversations</p>
         </div>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
@@ -76,7 +77,7 @@ export default function SignInForm() {
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Email/Username</FormLabel>
-                  <Input {...field} />
+                  <Input {...field} placeholder='John Doe' />
                   <FormMessage />
                 </FormItem>
               )}
@@ -87,18 +88,18 @@ export default function SignInForm() {
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Password</FormLabel>
-                  <Input type="password" {...field} />
+                  <Input type="password" {...field} placeholder='123456' />
                   <FormMessage />
                 </FormItem>
               )}
             />
-            <Button className='w-full' type="submit">Sign In</Button>
+            <Button className='w-full bg-[#14264d]' type="submit">Sign In</Button>
           </form>
         </Form>
         <div className="text-center mt-4">
           <p>
             Not a member yet?{' '}
-            <Link href="/sign-up" className="text-blue-600 hover:text-blue-800">
+            <Link href="/sign-up" className="text-blue-400 hover:text-blue-600">
               Sign up
             </Link>
           </p>

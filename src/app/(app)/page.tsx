@@ -1,30 +1,33 @@
 'use client';
 import { cn } from "@/lib/utils";
 import Marquee from "@/components/ui/marquee";
+import { bricolage_grotesque, inter } from "@/lib/fonts";
+import { RainbowButton } from "@/components/ui/rainbow-button";
+import Image from "next/image";
+import Link from "next/link";
 
 
 export default function Home() {
   return (
     <>
-      {/* Main content */}
-      <main className="flex-grow flex flex-col items-center justify-center py-12 text-white">
-        <section className="text-center mb-8 md:mb-12 h-[35vh] flex flex-col justify-end">
-          <h1 className="text-3xl md:text-5xl font-bold">
-            Dive into the World of Anonymous Feedback
+      <main className="flex-grow flex flex-col items-center justify-center h-[85vh] text-white">
+        <section className="text-center mb-8 md:mb-12 flex flex-col items-center justify-end">
+          <h1 className={`text-3xl md:text-7xl font-bold ${bricolage_grotesque}`}>
+            Dive into the World of
+            <br />
+            Anonymous Feedback
           </h1>
-          <p className="mt-3 md:mt-4 text-base md:text-lg">
+          <p className={`mt-5 text-lg text-gray-300 max-sm:!text-sm text-center tracking-normal leading-6 ${inter}`}>
             GhostGram - Where your identity remains a secret.
           </p>
-        </section>
-       
-          <MarqueeDemo />
 
+          <Link href={'/sign-in'}>
+            <RainbowButton className="mt-6">Get Started &gt;</RainbowButton>
+          </Link>
+        </section>
       </main>
 
-      {/* Footer */}
-      <footer className="text-center p-4 md:p-6 text-white">
-        © 2023 True Feedback. All rights reserved.
-      </footer>
+      <MarqueeComponent />
     </>
   );
 }
@@ -32,41 +35,41 @@ export default function Home() {
 
 const reviews = [
   {
-    name: "Jack",
-    username: "@jack",
-    body: "I've never seen anything like this before. It's amazing. I love it.",
+    name: "Fardeen Mansoori",
+    username: "@fardeen14693425",
+    body: "How do you spent your free time?",
     img: "https://avatar.vercel.sh/jack",
   },
   {
-    name: "Jill",
-    username: "@jill",
-    body: "I don't know what to say. I'm speechless. This is amazing.",
-    img: "https://avatar.vercel.sh/jill",
+    name: "Anonymous",
+    username: "@anonymous_user1",
+    body: "If you could change one decision you made in the past year, what would it be and why?",
+    img: "https://avatar.vercel.sh/user1",
   },
   {
-    name: "John",
-    username: "@john",
-    body: "I'm at a loss for words. This is amazing. I love it.",
-    img: "https://avatar.vercel.sh/john",
+    name: "Anonymous",
+    username: "@anon_quest2",
+    body: "What’s something you’re passionate about but haven’t had the chance to pursue yet?",
+    img: "https://avatar.vercel.sh/user2",
   },
   {
-    name: "Jane",
-    username: "@jane",
-    body: "I'm at a loss for words. This is amazing. I love it.",
-    img: "https://avatar.vercel.sh/jane",
+    name: "Anonymous",
+    username: "@hidden_wanderer",
+    body: "What advice would you give to someone going through a rough time, based on your own experiences?",
+    img: "https://avatar.vercel.sh/user3",
   },
   {
-    name: "Jenny",
-    username: "@jenny",
-    body: "I'm at a loss for words. This is amazing. I love it.",
-    img: "https://avatar.vercel.sh/jenny",
+    name: "Anonymous",
+    username: "@mystery_mind",
+    body: "If you could instantly master any skill, what would it be and how would you use it?",
+    img: "https://avatar.vercel.sh/user4",
   },
   {
-    name: "James",
-    username: "@james",
-    body: "I'm at a loss for words. This is amazing. I love it.",
-    img: "https://avatar.vercel.sh/james",
-  },
+    name: "Anonymous",
+    username: "@secret_inquirer",
+    body: "What’s one thing you wish people understood about you but rarely do?",
+    img: "https://avatar.vercel.sh/user5",
+  }
 ];
 
 const firstRow = reviews.slice(0, reviews.length / 2);
@@ -86,15 +89,13 @@ const ReviewCard = ({
   return (
     <figure
       className={cn(
-        "relative w-64 cursor-pointer overflow-hidden rounded-xl border p-4",
-        // light styles
+        "relative w-72 cursor-pointer overflow-hidden rounded-xl border p-4",
         "border-gray-950/[.1] bg-gray-950/[.01] hover:bg-gray-950/[.05]",
-        // dark styles
         "dark:border-gray-50/[.1] dark:bg-gray-50/[.10] dark:hover:bg-gray-50/[.15]",
       )}
     >
       <div className="flex flex-row items-center gap-2">
-        <img className="rounded-full" width="32" height="32" alt="" src={img} />
+        <Image className="rounded-full" width="32" height="32" alt="" src={img} />
         <div className="flex flex-col">
           <figcaption className="text-sm font-medium dark:text-white">
             {name}
@@ -107,9 +108,9 @@ const ReviewCard = ({
   );
 };
 
-export function MarqueeDemo() {
+export function MarqueeComponent() {
   return (
-    <div className="relative w-full flex h-[500px] flex-col items-center justify-center overflow-hidden rounded-lg">
+    <div className="relative w-full flex h-fit flex-col items-center justify-center overflow-hidden rounded-lg">
       <Marquee pauseOnHover className="[--duration:20s]">
         {firstRow.map((review) => (
           <ReviewCard key={review.username} {...review} />

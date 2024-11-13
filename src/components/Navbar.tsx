@@ -5,15 +5,16 @@ import Link from 'next/link';
 import { useSession, signOut } from 'next-auth/react';
 import { Button } from './ui/button';
 import { User } from 'next-auth';
+import { bricolage_grotesque } from '@/lib/fonts';
 
 function Navbar() {
   const { data: session } = useSession();
-  const user : User = session?.user;
+  const user: User = session?.user;
 
   return (
     <nav className="p-4 md:p-6 shadow-md text-white">
       <div className="container mx-auto flex flex-col md:flex-row justify-between items-center">
-        <a href="#" className="text-xl font-bold mb-4 md:mb-0">
+        <a href="/" className={`text-2xl font-bold mb-4 md:mb-0 ${bricolage_grotesque}`}>
           GhostGram
         </a>
         {session ? (

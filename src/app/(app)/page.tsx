@@ -5,6 +5,9 @@ import { bricolage_grotesque, inter } from "@/lib/fonts";
 import { RainbowButton } from "@/components/ui/rainbow-button";
 import Image from "next/image";
 import Link from "next/link";
+import { RiArrowRightWideFill } from "react-icons/ri";
+
+
 
 
 export default function Home() {
@@ -17,12 +20,15 @@ export default function Home() {
             <br />
             Anonymous Feedback
           </h1>
-          <p className={`mt-5 text-lg text-gray-300 max-sm:!text-sm text-center tracking-normal leading-6 ${inter}`}>
+          <p className={`mt-5 text-xl text-gray-300 max-sm:!text-sm text-center tracking-normal leading-6 ${inter}`}>
             GhostGram - Where your identity remains a secret.
           </p>
 
-          <Link href={'/sign-in'}>
-            <RainbowButton className="mt-6">Get Started &gt;</RainbowButton>
+          <Link href={'/sign-in'} className="mt-8">
+            <RainbowButton className="space-x-3">
+              <span>Get Started</span>
+              <span><RiArrowRightWideFill /></span>
+            </RainbowButton>
           </Link>
         </section>
       </main>
@@ -35,9 +41,9 @@ export default function Home() {
 
 const reviews = [
   {
-    name: "Fardeen Mansoori",
+    name: "Anonymous",
     username: "@fardeen14693425",
-    body: "How do you spent your free time?",
+    body: "What’s one thing you wish people understood about you but rarely do?",
     img: "https://avatar.vercel.sh/jack",
   },
   {

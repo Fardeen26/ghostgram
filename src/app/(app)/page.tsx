@@ -5,7 +5,8 @@ import { bricolage_grotesque, inter } from "@/lib/fonts";
 import { RainbowButton } from "@/components/ui/rainbow-button";
 import Image from "next/image";
 import Link from "next/link";
-import { RiArrowRightWideFill } from "react-icons/ri";
+import { RiArrowRightSLine } from "react-icons/ri";
+
 
 
 
@@ -20,14 +21,14 @@ export default function Home() {
             <br />
             Anonymous Feedback
           </h1>
-          <p className={`mt-5 text-xl text-gray-300 max-sm:!text-sm text-center tracking-normal leading-6 ${inter}`}>
+          <p className={`mt-5 text-lg text-gray-300 max-sm:!text-sm text-center tracking-normal leading-6 ${inter}`}>
             GhostGram - Where your identity remains a secret.
           </p>
 
           <Link href={'/sign-in'} className="mt-8">
             <RainbowButton className="space-x-3">
               <span>Get Started</span>
-              <span><RiArrowRightWideFill /></span>
+              <span><RiArrowRightSLine /></span>
             </RainbowButton>
           </Link>
         </section>
@@ -100,7 +101,7 @@ const ReviewCard = ({
         "dark:border-gray-50/[.1] dark:bg-gray-50/[.10] dark:hover:bg-gray-50/[.15]",
       )}
     >
-      <div className="flex flex-row items-center gap-2">
+      <div className="flex flex-row items-center gap-2 h-20">
         <Image className="rounded-full" width="32" height="32" alt="" src={img} />
         <div className="flex flex-col">
           <figcaption className="text-sm font-medium dark:text-white">

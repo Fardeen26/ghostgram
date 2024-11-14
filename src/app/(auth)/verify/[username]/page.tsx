@@ -17,6 +17,7 @@ import { useForm } from 'react-hook-form';
 import * as z from 'zod';
 import { verifySchema } from '@/schemas/verifySchema';
 import { useToast } from '@/hooks/use-toast';
+import { bricolage_grotesque } from '@/lib/fonts';
 
 export default function VerifyAccount() {
   const router = useRouter();
@@ -52,8 +53,8 @@ export default function VerifyAccount() {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100">
-      <div className="w-full max-w-md p-8 space-y-8 bg-white text-black rounded-lg shadow-md">
+    <div className={`flex justify-center items-center min-h-screen ${bricolage_grotesque}`}>
+      <div className="w-full max-w-xl p-8 space-y-8 text-white rounded-lg shadow-md">
         <div className="text-center">
           <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl mb-6">
             Verify Your Account
@@ -73,7 +74,7 @@ export default function VerifyAccount() {
                 </FormItem>
               )}
             />
-            <Button type="submit">Verify</Button>
+            <Button type="submit" className='w-full bg-[#14264d]'>Verify</Button>
           </form>
         </Form>
       </div>

@@ -6,16 +6,15 @@ import { RainbowButton } from "@/components/ui/rainbow-button";
 import Image from "next/image";
 import Link from "next/link";
 import { RiArrowRightSLine } from "react-icons/ri";
-
-
+import { AnimatedListDemo } from "@/components/AnimateListComponent";
 
 
 
 export default function Home() {
   return (
     <>
-      <main className="flex-grow flex flex-col items-center justify-center h-[85vh] text-white">
-        <section className="text-center mb-8 md:mb-12 flex flex-col items-center justify-end">
+      <main className="flex-grow flex flex-col items-center justify-center h-[60vh] text-white">
+        <section className="text-center flex flex-col items-center justify-end">
           <h1 className={`text-3xl md:text-7xl font-bold ${bricolage_grotesque}`}>
             Dive into the World of
             <br />
@@ -34,7 +33,14 @@ export default function Home() {
         </section>
       </main>
 
-      <MarqueeComponent />
+      <div>
+        <MarqueeComponent />
+      </div>
+
+      <div className="space-y-4 mt-32 pb-10">
+        <h2 className={`text-center text-3xl md:text-5xl font-bold ${bricolage_grotesque}`}>Receive Instant Feedbacks</h2>
+        <AnimatedListDemo />
+      </div>
     </>
   );
 }
@@ -133,3 +139,4 @@ export function MarqueeComponent() {
     </div>
   );
 }
+

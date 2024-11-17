@@ -27,6 +27,8 @@ export async function POST(request: Request) {
     const existingUserByEmail = await UserModel.findOne({ email });
     const verifyCode = Math.floor(100000 + Math.random() * 900000).toString();
 
+    console.log("existing user email", existingUserByEmail)
+
     if (existingUserByEmail) {
       if (existingUserByEmail.isVerified) {
         return Response.json(
@@ -44,22 +46,26 @@ export async function POST(request: Request) {
         await existingUserByEmail.save();
       }
     } else {
-      const hashedPassword = await bcrypt.hash(password, 10);
-      const expiryDate = new Date();
-      expiryDate.setHours(expiryDate.getHours() + 1);
+      try {
+        const hashedPassword = await bcrypt.hash(password, 10);
+        const expiryDate = new Date();
+        expiryDate.setHours(expiryDate.getHours() + 1);
 
-      const newUser = new UserModel({
-        username,
-        email,
-        password: hashedPassword,
-        verifyCode,
-        verifyCodeExpiry: expiryDate,
-        isVerified: false,
-        isAcceptingMessages: true,
-        messages: [],
-      });
+        const newUser = new UserModel({
+          username,
+          email,
+          password: hashedPassword,
+          verifyCode,
+          verifyCodeExpiry: expiryDate,
+          isVerified: false,
+          isAcceptingMessages: true,
+          messages: [],
+        });
 
-      await newUser.save();
+        await newUser.save();
+      } catch (error) {
+        console.log("Error while Signing up user", error)
+      }
     }
 
     // Send verification email

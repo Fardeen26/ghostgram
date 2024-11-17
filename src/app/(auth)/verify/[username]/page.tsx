@@ -16,13 +16,12 @@ import { useParams, useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
 import { verifySchema } from '@/schemas/verifySchema';
-import { useToast } from '@/hooks/use-toast';
 import { bricolage_grotesque } from '@/lib/fonts';
+import { toast } from 'sonner';
 
 export default function VerifyAccount() {
   const router = useRouter();
   const params = useParams<{ username: string }>();
-  const { toast } = useToast();
   const form = useForm<z.infer<typeof verifySchema>>({
     resolver: zodResolver(verifySchema),
   });
@@ -34,21 +33,12 @@ export default function VerifyAccount() {
         code: data.code,
       });
 
-      toast({
-        title: 'Success',
-        description: response.data.message,
-      });
+      toast.success(response.data.message)
 
       router.replace('/sign-in');
     } catch (error) {
       const axiosError = error as AxiosError<ApiResponse>;
-      toast({
-        title: 'Verification Failed',
-        description:
-          axiosError.response?.data.message ??
-          'An error occurred. Please try again.',
-        variant: 'destructive',
-      });
+      toast.error(axiosError.response?.data.message ?? 'An error occurred. Please try again.')
     }
   };
 

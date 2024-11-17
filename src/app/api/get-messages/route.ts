@@ -18,7 +18,6 @@ export async function GET(request: Request) {
     );
   }
   const userId = new mongoose.Types.ObjectId(user._id);
-  // console.log("usr id", userId)
   try {
     const user = await UserModel.aggregate([
       { $match: { _id: userId } },
@@ -27,7 +26,6 @@ export async function GET(request: Request) {
       { $group: { _id: '$_id', messages: { $push: '$messages' } } },
     ]).exec();
 
-    // console.log("get message user", user)
 
     if (!user) {
       return Response.json(

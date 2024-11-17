@@ -21,8 +21,8 @@ import axios, { AxiosError } from 'axios';
 import { Loader2 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { signUpSchema } from '@/schemas/signUpSchema';
-import { useToast } from '@/hooks/use-toast';
 import { bricolage_grotesque } from '@/lib/fonts';
+import { toast } from 'sonner';
 
 export default function SignUpForm() {
   const [username, setUsername] = useState('');
@@ -32,7 +32,6 @@ export default function SignUpForm() {
   const debounced = useDebounceCallback(setUsername, 300);
 
   const router = useRouter();
-  const { toast } = useToast();
 
   const form = useForm<z.infer<typeof signUpSchema>>({
     resolver: zodResolver(signUpSchema),
@@ -70,11 +69,7 @@ export default function SignUpForm() {
     setIsSubmitting(true);
     try {
       const response = await axios.post<ApiResponse>('/api/sign-up', data);
-
-      toast({
-        title: 'Success',
-        description: response.data.message,
-      });
+      toast.success(response.data.message)
 
       router.replace(`/verify/${username}`);
 
@@ -88,11 +83,7 @@ export default function SignUpForm() {
       const errorMessage = axiosError.response?.data.message;
       ('There was a problem with your sign-up. Please try again.');
 
-      toast({
-        title: 'Sign Up Failed',
-        description: errorMessage,
-        variant: 'destructive',
-      });
+      toast.error(errorMessage)
 
       setIsSubmitting(false);
     }

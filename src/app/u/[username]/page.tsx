@@ -18,12 +18,12 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Textarea } from '@/components/ui/textarea';
-import { useToast } from '@/hooks/use-toast';
 import * as z from 'zod';
 import { ApiResponse } from '@/types/ApiResponse';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { messageSchema } from '@/schemas/messageSchema';
+import { toast } from 'sonner';
 
 const specialChar = '||';
 
@@ -37,7 +37,6 @@ const initialMessageString =
 export default function SendMessage() {
   const params = useParams<{ username: string }>();
   const username = params.username;
-    const { toast } = useToast();
 
   const {
     complete,
@@ -69,19 +68,11 @@ export default function SendMessage() {
         username,
       });
 
-      toast({
-        title: response.data.message,
-        variant: 'default',
-      });
+      toast.info(response.data.message)
       form.reset({ ...form.getValues(), content: '' });
     } catch (error) {
       const axiosError = error as AxiosError<ApiResponse>;
-      toast({
-        title: 'Error',
-        description:
-          axiosError.response?.data.message ?? 'Failed to sent message',
-        variant: 'destructive',
-      });
+      toast.error(axiosError.response?.data.message ?? 'Failed to sent message')
     } finally {
       setIsLoading(false);
     }
@@ -91,8 +82,8 @@ export default function SendMessage() {
     try {
       complete('');
     } catch (error) {
+      // td handle error
       console.error('Error fetching messages:', error);
-      // Handle error appropriately
     }
   };
 

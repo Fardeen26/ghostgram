@@ -49,18 +49,18 @@ export function MessageCard({ message, onMessageDelete }: MessageCardProps) {
           axiosError.response?.data.message ?? 'Failed to delete message',
         variant: 'destructive',
       });
-    } 
+    }
   };
 
   return (
-    <Card className="card-bordered">
+    <Card className="card-bordered relative mt-2">
       <CardHeader>
         <div className="flex justify-between items-center">
           <CardTitle>{message.content}</CardTitle>
           <AlertDialog>
             <AlertDialogTrigger asChild>
-              <Button variant='destructive'>
-                <X className="w-5 h-5" />
+              <Button className='p-0 bg-transparent text-black hover:bg-transparent absolute right-3 top-0'>
+                <X className="w-4 h-4 hover:scale-125 transition-all" />
               </Button>
             </AlertDialogTrigger>
             <AlertDialogContent>
@@ -82,7 +82,7 @@ export function MessageCard({ message, onMessageDelete }: MessageCardProps) {
             </AlertDialogContent>
           </AlertDialog>
         </div>
-        <div className="text-sm">
+        <div className="text-xs">
           {dayjs(message.createdAt).format('MMM D, YYYY h:mm A')}
         </div>
       </CardHeader>

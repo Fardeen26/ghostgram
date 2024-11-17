@@ -2,7 +2,6 @@
 
 import { MessageCard } from '@/components/MessageCard';
 import { Button } from '@/components/ui/button';
-import { Separator } from '@/components/ui/separator';
 import { Switch } from '@/components/ui/switch';
 import { useToast } from '@/hooks/use-toast';
 import { Message } from '@/model/User';
@@ -152,8 +151,7 @@ function UserDashboard() {
       </div>
 
       <div className="mb-4 flex items-center space-x-3">
-        <span className="ml-2">
-          {/* Accept Messages: {acceptMessages ? 'On' : 'Off'} */}
+        <span className="ml-2 text-sm">
           Do you want to accept messages?
         </span>
         <Switch
@@ -164,22 +162,25 @@ function UserDashboard() {
         />
 
       </div>
-      <Separator />
 
-      <Button
-        className="mt-4"
-        variant="outline"
-        onClick={(e) => {
-          e.preventDefault();
-          fetchMessages(true);
-        }}
-      >
-        {isLoading ? (
-          <Loader2 className="h-4 w-4 animate-spin" />
-        ) : (
-          <RefreshCcw className="h-4 w-4" />
-        )}
-      </Button>
+      <div className="flex justify-end mt-5">
+
+        <Button
+          className="mt-4 p-3 h-1"
+          variant='outline'
+          onClick={(e) => {
+            e.preventDefault();
+            fetchMessages(true);
+          }}
+        >
+          {isLoading ? (
+            <Loader2 className="h-4 w-4 animate-spin" />
+          ) : (
+            <RefreshCcw className="h-4 w-4" />
+          )}
+        </Button>
+      </div>
+
       <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-6">
         {messages.length > 0 ? (
           messages.map((message, index) => (

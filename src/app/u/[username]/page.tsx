@@ -24,6 +24,7 @@ import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { messageSchema } from '@/schemas/messageSchema';
 import { toast } from 'sonner';
+import { bricolage_grotesque } from '@/lib/fonts';
 
 const specialChar = '||';
 
@@ -68,7 +69,7 @@ export default function SendMessage() {
         username,
       });
 
-      toast.info(response.data.message)
+      toast.success(response.data.message)
       form.reset({ ...form.getValues(), content: '' });
     } catch (error) {
       const axiosError = error as AxiosError<ApiResponse>;
@@ -88,8 +89,8 @@ export default function SendMessage() {
   };
 
   return (
-    <div className="container mx-auto my-8 p-6 bg-white text-black rounded max-w-4xl">
-      <h1 className="text-4xl font-bold mb-6 text-center">
+    <div className={`container mt-12 mx-auto my-8 p-6 rounded max-w-4xl ${bricolage_grotesque}`}>
+      <h1 className="text-4xl font-bold mb-10 text-center">
         Public Profile Link
       </h1>
       <Form {...form}>
@@ -99,11 +100,11 @@ export default function SendMessage() {
             name="content"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Send Anonymous Message to @{username}</FormLabel>
+                <FormLabel className='text-white'>Send Anonymous Message to @{username}</FormLabel>
                 <FormControl>
                   <Textarea
                     placeholder="Write your anonymous message here"
-                    className="resize-none"
+                    className="resize-none placeholder:text-gray-400"
                     {...field}
                   />
                 </FormControl>
@@ -111,14 +112,14 @@ export default function SendMessage() {
               </FormItem>
             )}
           />
-          <div className="flex justify-center">
+          <div className="w-full flex justify-center">
             {isLoading ? (
-              <Button disabled>
+              <Button disabled className='w-full'>
                 <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                 Please wait
               </Button>
             ) : (
-              <Button type="submit" disabled={isLoading || !messageContent}>
+              <Button type="submit" className='w-full bg-white hover:bg-gray-200 disabled:bg-white text-black' disabled={isLoading || !messageContent}>
                 Send It
               </Button>
             )}
@@ -126,20 +127,10 @@ export default function SendMessage() {
         </form>
       </Form>
 
-      <div className="space-y-4 my-8">
-        <div className="space-y-2">
-          <Button
-            onClick={fetchSuggestedMessages}
-            className="my-4"
-            disabled={isSuggestLoading}
-          >
-            Suggest Messages
-          </Button>
-          <p>Click on any message below to select it.</p>
-        </div>
-        <Card>
-          <CardHeader>
-            <h3 className="text-xl font-semibold">Messages</h3>
+      <div className="space-y-4 my-8 mt-10">
+        <Card className='bg-black text-white border-none'>
+          <CardHeader className='text-center text-2xl font-semibold'>
+            Click on any message below to select it.
           </CardHeader>
           <CardContent className="flex flex-col space-y-4">
             {error ? (
@@ -149,7 +140,6 @@ export default function SendMessage() {
                 <Button
                   key={index}
                   variant="outline"
-                  className="mb-2"
                   onClick={() => handleMessageClick(message)}
                 >
                   {message}
@@ -158,12 +148,21 @@ export default function SendMessage() {
             )}
           </CardContent>
         </Card>
+        <div className="space-y-2 w-full">
+          <Button
+            onClick={fetchSuggestedMessages}
+            className="my-4 w-full bg-blue-700 hover:bg-blue-800"
+            disabled={isSuggestLoading}
+          >
+            Suggest Messages
+          </Button>
+        </div>
       </div>
       <Separator className="my-6" />
       <div className="text-center">
-        <div className="mb-4">Get Your Message Board</div>
+        <div className="mb-4 text-lg max-sm:text-base">Do you also want to Receive Feedbacks?</div>
         <Link href={'/sign-up'}>
-          <Button>Create Your Account</Button>
+          <Button className='w-full'>Get Started Now</Button>
         </Link>
       </div>
     </div>

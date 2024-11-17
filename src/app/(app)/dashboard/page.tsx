@@ -9,12 +9,13 @@ import { Message } from '@/model/User';
 import { ApiResponse } from '@/types/ApiResponse';
 import { zodResolver } from '@hookform/resolvers/zod';
 import axios, { AxiosError } from 'axios';
-import { Loader2, RefreshCcw } from 'lucide-react';
+import { Loader2, RefreshCcw, Clipboard } from 'lucide-react';
 import { User } from 'next-auth';
 import { useSession } from 'next-auth/react';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { AcceptMessageSchema } from '@/schemas/acceptMessageSchema';
+import { bricolage_grotesque } from '@/lib/fonts';
 
 function UserDashboard() {
   const [messages, setMessages] = useState<Message[]>([]);
@@ -134,32 +135,34 @@ function UserDashboard() {
   };
 
   return (
-    <div className="my-8 mx-4 md:mx-8 lg:mx-auto p-6 bg-white text-black rounded w-full max-w-6xl">
-      <h1 className="text-4xl font-bold mb-4">User Dashboard</h1>
+    <div className={`my-8 mx-4 md:mx-8 lg:mx-auto p-6 rounded w-full max-w-6xl ${bricolage_grotesque}`}>
+      <h1 className="text-4xl font-bold text-center mb-5">User Dashboard</h1>
 
       <div className="mb-4">
-        <h2 className="text-lg font-semibold mb-2">Copy Your Unique Link</h2>{' '}
-        <div className="flex items-center">
+        <h2 className="font-semibold mb-2">Copy Your Unique Link</h2>{' '}
+        <div className="flex items-center relative">
           <input
             type="text"
             value={profileUrl}
             disabled
-            className="input input-bordered w-full p-2 mr-2"
+            className="input input-bordered rounded-lg bg-transparent border border-white w-full px-3 py-2 mr-2"
           />
-          <Button onClick={copyToClipboard}>Copy</Button>
+          <Button className='absolute bg-transparent hover:bg-transparent right-3' onClick={copyToClipboard}><Clipboard className='h-4 w-4' /></Button>
         </div>
       </div>
 
-      <div className="mb-4">
+      <div className="mb-4 flex items-center space-x-3">
+        <span className="ml-2">
+          {/* Accept Messages: {acceptMessages ? 'On' : 'Off'} */}
+          Do you want to accept messages?
+        </span>
         <Switch
           {...register('acceptMessages')}
           checked={acceptMessages}
           onCheckedChange={handleSwitchChange}
           disabled={isSwitchLoading}
         />
-        <span className="ml-2">
-          Accept Messages: {acceptMessages ? 'On' : 'Off'}
-        </span>
+
       </div>
       <Separator />
 
@@ -181,7 +184,7 @@ function UserDashboard() {
         {messages.length > 0 ? (
           messages.map((message, index) => (
             <MessageCard
-              key={index+1}
+              key={index + 1}
               message={message}
               onMessageDelete={handleDeleteMessage}
             />

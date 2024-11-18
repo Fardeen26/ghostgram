@@ -15,18 +15,25 @@ import { useForm } from 'react-hook-form';
 import { AcceptMessageSchema } from '@/schemas/acceptMessageSchema';
 import { bricolage_grotesque } from '@/lib/fonts';
 import { toast } from 'sonner'
+import { useRouter } from 'next/navigation';
 
 function UserDashboard() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isSwitchLoading, setIsSwitchLoading] = useState(false);
-
+  const router = useRouter()
 
   const handleDeleteMessage = (messageId: string) => {
     setMessages(messages.filter((message) => message._id !== messageId));
   };
 
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
+
+  const isUserLoggedOut = status === 'unauthenticated';
+
+  if (isUserLoggedOut) {
+    router.replace('/')
+  }
 
   const form = useForm({
     resolver: zodResolver(AcceptMessageSchema),

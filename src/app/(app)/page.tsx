@@ -1,4 +1,5 @@
 'use client';
+
 import { cn } from "@/lib/utils";
 import Marquee from "@/components/ui/marquee";
 import { bricolage_grotesque, inter } from "@/lib/fonts";
@@ -7,10 +8,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { RiArrowRightSLine } from "react-icons/ri";
 import { AnimatedListDemo } from "@/components/AnimateListComponent";
-
+import { useSession } from 'next-auth/react';
 
 
 export default function Home() {
+  const { status } = useSession()
+  const isUserLoggedIn = status === 'authenticated';
+
   return (
     <>
       <main className="flex-grow flex flex-col items-center justify-center h-[60vh] text-white">
@@ -24,7 +28,7 @@ export default function Home() {
             GhostGram - Where your identity remains a secret.
           </p>
 
-          <Link href={'/sign-in'} className="mt-8">
+          <Link href={`${isUserLoggedIn ? '/dashboard' : '/sign-in'}`} className="mt-8">
             <RainbowButton className="space-x-3">
               <span>Get Started</span>
               <span><RiArrowRightSLine /></span>

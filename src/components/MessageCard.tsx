@@ -34,7 +34,7 @@ export function MessageCard({ message, onMessageDelete }: MessageCardProps) {
       const response = await axios.delete<ApiResponse>(
         `/api/delete-message/${message._id}`
       );
-      toast(response.data.message)
+      toast.success(response.data.message)
       onMessageDelete(message._id as string);
 
     } catch (error) {
@@ -44,33 +44,16 @@ export function MessageCard({ message, onMessageDelete }: MessageCardProps) {
   };
 
   return (
-    <Card className="card-bordered relative mt-2">
+    <Card className="relative cursor-text border-gray-950/[.1] bg-gray-950/[.01] hover:bg-gray-950/[.05] dark:border-gray-50/[.1] dark:bg-gray-50/[.10] dark:hover:bg-gray-50/[.15]">
       <CardHeader>
         <div className="flex justify-between items-center">
           <CardTitle>{message.content}</CardTitle>
           <AlertDialog>
             <AlertDialogTrigger asChild>
-              <Button className='p-0 bg-transparent text-black hover:bg-transparent absolute right-3 top-0'>
-                <X className="w-4 h-4 hover:scale-125 transition-all" />
+              <Button className='p-0 bg-transparent text-gray-700 hover:text-black dark:text-gray-500 dark:hover:text-white hover:bg-transparent absolute right-3 top-0' onClick={handleDeleteConfirm}>
+                <X className="w-4 h-4 hover:scale-110" />
               </Button>
             </AlertDialogTrigger>
-            <AlertDialogContent>
-              <AlertDialogHeader>
-                <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
-                <AlertDialogDescription>
-                  This action cannot be undone. This will permanently delete
-                  this message.
-                </AlertDialogDescription>
-              </AlertDialogHeader>
-              <AlertDialogFooter>
-                <AlertDialogCancel>
-                  Cancel
-                </AlertDialogCancel>
-                <AlertDialogAction onClick={handleDeleteConfirm}>
-                  Continue
-                </AlertDialogAction>
-              </AlertDialogFooter>
-            </AlertDialogContent>
           </AlertDialog>
         </div>
         <div className="text-xs">

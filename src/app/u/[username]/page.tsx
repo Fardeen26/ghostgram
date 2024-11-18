@@ -89,7 +89,7 @@ export default function SendMessage() {
   };
 
   return (
-    <div className={`container mt-12 mx-auto my-8 p-6 rounded max-w-4xl ${bricolage_grotesque}`}>
+    <div className={`container mx-auto mt-4 my-8 p-6 rounded max-w-4xl ${bricolage_grotesque}`}>
       <h1 className="text-4xl font-bold mb-10 text-center">
         Public Profile Link
       </h1>
@@ -100,7 +100,7 @@ export default function SendMessage() {
             name="content"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className='text-white'>Send Anonymous Message to @{username}</FormLabel>
+                <FormLabel className='dark:text-white text-black'>Send Anonymous Message to @{username}</FormLabel>
                 <FormControl>
                   <Textarea
                     placeholder="Write your anonymous message here"
@@ -119,7 +119,7 @@ export default function SendMessage() {
                 Please wait
               </Button>
             ) : (
-              <Button type="submit" className='w-full bg-white hover:bg-gray-200 disabled:bg-white text-black' disabled={isLoading || !messageContent}>
+              <Button type="submit" className='w-full' disabled={isLoading || !messageContent}>
                 Send It
               </Button>
             )}
@@ -128,11 +128,11 @@ export default function SendMessage() {
       </Form>
 
       <div className="space-y-4 my-8 mt-10">
-        <Card className='bg-black text-white border-none'>
+        <Card className='dark:bg-black border-none'>
           <CardHeader className='text-center text-2xl font-semibold'>
             Click on any message below to select it.
           </CardHeader>
-          <CardContent className="flex flex-col space-y-4">
+          <CardContent className="flex flex-col space-y-2">
             {error ? (
               <p className="text-red-500">{error.message}</p>
             ) : (
@@ -151,7 +151,7 @@ export default function SendMessage() {
         <div className="space-y-2 w-full">
           <Button
             onClick={fetchSuggestedMessages}
-            className="my-4 w-full bg-blue-700 hover:bg-blue-800"
+            className="my-4 w-full text-white bg-blue-700 hover:bg-blue-800"
             disabled={isSuggestLoading}
           >
             Suggest Messages

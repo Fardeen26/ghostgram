@@ -114,8 +114,8 @@ function UserDashboard() {
   };
 
   return (
-    <div className={`my-8 mx-4 md:mx-8 lg:mx-auto p-6 rounded w-full max-w-6xl ${bricolage_grotesque}`}>
-      <h1 className="text-4xl font-bold text-center mb-5">User Dashboard</h1>
+    <div className={`mb-8 mx-4 md:mx-8 lg:mx-auto p-6 rounded w-full max-w-6xl ${bricolage_grotesque}`}>
+      <h1 className="text-4xl mt-4 font-bold text-center mb-5">User Dashboard</h1>
 
       <div className="mb-4">
         <h2 className="font-semibold mb-2">Copy Your Unique Link</h2>{' '}
@@ -124,9 +124,9 @@ function UserDashboard() {
             type="text"
             value={profileUrl}
             disabled
-            className="input input-bordered rounded-lg bg-transparent border border-white w-full px-3 py-2 mr-2"
+            className="input input-bordered rounded-lg bg-transparent border dark:border-gray-500 w-full px-3 py-2 mr-2"
           />
-          <Button className='absolute bg-transparent hover:bg-transparent right-3' onClick={copyToClipboard}><Clipboard className='h-4 w-4' /></Button>
+          <Button className='absolute bg-transparent hover:bg-transparent text-black dark:text-white right-3 ' onClick={copyToClipboard}><Clipboard className='h-4 w-4' /></Button>
         </div>
       </div>
 

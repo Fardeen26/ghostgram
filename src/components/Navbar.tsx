@@ -16,9 +16,9 @@ function Navbar() {
   const user: User = session?.user;
 
   return (
-    <nav className={`p-4 md:p-6 shadow-md text-white ${bricolage_grotesque}`}>
+    <nav className={`p-4 md:p-6 ${bricolage_grotesque}`}>
       <div className="container mx-auto flex md:flex-row justify-between items-center">
-        <a href="/" className={`text-2xl font-bold mb-4 md:mb-0 flex space-x-[2px]`}>
+        <a href="/" className={`text-2xl font-bold mb-4 md:mb-0 flex space-x-0 dark:space-x-[2px]`}>
           <span>
             <Image src={'/ghostgram-logo.png'} alt='logo' height={30} width={30} className='rounded-xl' />
           </span>

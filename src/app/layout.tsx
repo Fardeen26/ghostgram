@@ -1,14 +1,11 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
 import './globals.css';
 import AuthProvider from '../context/AuthProvider';
 import { Toaster } from 'sonner'
 import DarkModeProvider from '@/context/DarkModeContext';
 
-const inter = Inter({ subsets: ['latin'] });
-
 export const metadata: Metadata = {
-  title: 'True Feedback',
+  title: 'GhostGram',
   description: 'Real feedback from real people.',
 };
 
@@ -21,7 +18,7 @@ export default async function RootLayout({ children }: RootLayoutProps) {
     <html lang="en" >
       <AuthProvider>
         <DarkModeProvider>
-          <body className={inter.className}>
+          <body className='bg-white text-black dark:bg-black dark:text-white'>
             {children}
             <Toaster />
           </body>

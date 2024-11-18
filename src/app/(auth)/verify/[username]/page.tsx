@@ -44,12 +44,12 @@ export default function VerifyAccount() {
 
   return (
     <div className={`flex justify-center items-center min-h-screen ${bricolage_grotesque}`}>
-      <div className="w-full max-w-xl p-8 space-y-8 text-white rounded-lg shadow-md">
+      <div className="w-full max-w-xl p-8 space-y-8 rounded-lg">
         <div className="text-center">
           <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl mb-6">
             Verify Your Account
           </h1>
-          <p className="mb-4">Enter the verification code sent to your email</p>
+          <p className="mb-4 text-sm">Enter the verification code sent to your email</p>
         </div>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
@@ -64,7 +64,7 @@ export default function VerifyAccount() {
                 </FormItem>
               )}
             />
-            <Button type="submit" className='w-full bg-[#14264d]'>Verify</Button>
+            <Button type="submit" className='w-full dark:bg-white dark:hover:bg-gray-200'>Verify</Button>
           </form>
         </Form>
       </div>

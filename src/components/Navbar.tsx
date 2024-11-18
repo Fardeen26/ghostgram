@@ -7,8 +7,11 @@ import { Button } from './ui/button';
 import { User } from 'next-auth';
 import { bricolage_grotesque } from '@/lib/fonts';
 import Image from 'next/image';
+import { useDarkMode } from '@/hooks/useDarkMode';
+import { MoonIcon, SunIcon } from 'lucide-react';
 
 function Navbar() {
+  const { isDarkMode, toggleDarkMode } = useDarkMode();
   const { data: session } = useSession();
   const user: User = session?.user;
 
@@ -24,11 +27,18 @@ function Navbar() {
           </span>
         </a>
         {session ? (
-          <>
+          <div className="flex items-center space-x-4">
+            <div onClick={toggleDarkMode}>
+              <div className='flex items-center'>
+                <button>
+                  {isDarkMode ? <MoonIcon className='w-[18px] h-[18px] max-sm:w-[14px] max-sm:h-[14px]' /> : <SunIcon className='w-5 h-5 max-sm:w-[15px] max-sm:h-[15px]' />}
+                </button>
+              </div>
+            </div>
             <Button onClick={() => signOut()} className="w-full md:w-auto bg-white text-black rounded-full px-8 h-8" variant='outline'>
               Logout
             </Button>
-          </>
+          </div>
         ) : (
           <Link href="/sign-in">
             <Button className="w-full bg-white text-black rounded-full px-8 h-8" variant={'outline'}>Login</Button>

@@ -3,12 +3,11 @@ import { OpenAIStream, StreamingTextResponse } from 'ai';
 import { NextResponse } from 'next/server';
 
 const openai = new OpenAI({
-  apiKey: 'sk-mKCqVjo4WXQ9X8yUQOLWJ3yhrmxtKfimWcqTWIorb-T3BlbkFJLR2XP4tOVPAAQm8bQLEBbDzouvgEnRVlyGyof7xZ0A',
+  apiKey: process.env.OPENAI_API_KEY,
 });
 
 export const runtime = 'edge';
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export async function POST(req: Request) {
   try {
     const prompt =
@@ -22,16 +21,14 @@ export async function POST(req: Request) {
     });
 
     const stream = OpenAIStream(response);
-    
-    
+
+
     return new StreamingTextResponse(stream);
   } catch (error) {
     if (error instanceof OpenAI.APIError) {
-      // OpenAI API error handling
       const { name, status, headers, message } = error;
       return NextResponse.json({ name, status, headers, message }, { status });
     } else {
-      // General error handling
       console.error('An unexpected error occurred:', error);
       throw error;
     }

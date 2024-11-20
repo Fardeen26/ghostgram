@@ -40,25 +40,19 @@ export async function POST(request: Request) {
             );
         }
 
-
-
         const verifyCode = Math.floor(100000 + Math.random() * 900000).toString();
         user.verifyCode = verifyCode;
         user.verifyCodeExpiry = new Date(Date.now() + 3600000);
 
         await user.save();
 
-        const emailResponse = await sendVerificationEmail(
-            email,
-            username,
-            verifyCode
-        );
+        const result = await sendVerificationEmail(email, username, verifyCode);
 
-        if (!emailResponse.success) {
+        if (!result.success) {
             return Response.json(
                 {
                     success: false,
-                    message: emailResponse.message,
+                    message: 'Error while sending the verification code',
                 },
                 { status: 500 }
             );

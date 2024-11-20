@@ -33,6 +33,7 @@
     "mongoose": "^8.6.1",
     "next": "14.2.9",
     "next-auth": "^4.24.7",
+    "nodemailer": "^6.9.16",
     "openai": "^4.62.1",
     "react": "^18",
     "react-dom": "^18",
@@ -49,6 +50,7 @@
   "devDependencies": {
     "@types/bcryptjs": "^2.4.6",
     "@types/node": "^20",
+    "@types/nodemailer": "^6.4.17",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "eslint": "^8",

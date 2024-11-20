@@ -43,7 +43,13 @@ export default function SignInForm() {
       if (result.error === 'CredentialsSignin') {
         toast.error('Incorrect username or password')
       } else {
-        toast.error(result.error)
+        if (result.error == 'Error: Please verify your account before logging in') {
+          toast.error(`You verify code is expired, fill this form to get a new verify code`)
+          router.push('/send-verify-code')
+        }
+        else {
+          toast.error(result.error)
+        }
       }
     }
 

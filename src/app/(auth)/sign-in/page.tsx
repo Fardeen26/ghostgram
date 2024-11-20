@@ -18,8 +18,11 @@ import { useRouter } from 'next/navigation';
 import { signInSchema } from '@/schemas/signInSchema';
 import { bricolage_grotesque } from '@/lib/fonts';
 import { toast } from 'sonner';
+import { Loader2 } from 'lucide-react';
+import { useState } from 'react';
 
 export default function SignInForm() {
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const router = useRouter();
 
   const form = useForm<z.infer<typeof signInSchema>>({
@@ -32,6 +35,7 @@ export default function SignInForm() {
 
 
   const onSubmit = async (data: z.infer<typeof signInSchema>) => {
+    setIsSubmitting(true)
     const result = await signIn('credentials', {
       redirect: false,
       identifier: data.identifier,
@@ -52,6 +56,8 @@ export default function SignInForm() {
         }
       }
     }
+
+    setIsSubmitting(false)
 
     if (result?.url) {
       router.replace('/dashboard');
@@ -91,7 +97,16 @@ export default function SignInForm() {
                 </FormItem>
               )}
             />
-            <Button className='w-full dark:bg-white dark:hover:bg-gray-200' type="submit">Sign In</Button>
+            <Button type="submit" className='w-full dark:bg-white dark:hover:bg-gray-200' disabled={isSubmitting}>
+              {isSubmitting ? (
+                <>
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  Please wait
+                </>
+              ) : (
+                'Sign In'
+              )}
+            </Button>
           </form>
         </Form>
         <div className="text-center mt-4">

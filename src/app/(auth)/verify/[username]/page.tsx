@@ -18,8 +18,11 @@ import * as z from 'zod';
 import { verifySchema } from '@/schemas/verifySchema';
 import { bricolage_grotesque } from '@/lib/fonts';
 import { toast } from 'sonner';
+import { Loader2 } from 'lucide-react';
+import { useState } from 'react';
 
 export default function VerifyAccount() {
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const router = useRouter();
   const params = useParams<{ username: string }>();
   const form = useForm<z.infer<typeof verifySchema>>({
@@ -27,6 +30,7 @@ export default function VerifyAccount() {
   });
 
   const onSubmit = async (data: z.infer<typeof verifySchema>) => {
+    setIsSubmitting(true)
     try {
       const response = await axios.post<ApiResponse>(`/api/verify-code`, {
         username: params.username,
@@ -39,6 +43,7 @@ export default function VerifyAccount() {
     } catch (error) {
       const axiosError = error as AxiosError<ApiResponse>;
       toast.error(axiosError.response?.data.message ?? 'An error occurred. Please try again.')
+      setIsSubmitting(false)
     }
   };
 
@@ -64,7 +69,16 @@ export default function VerifyAccount() {
                 </FormItem>
               )}
             />
-            <Button type="submit" className='w-full dark:bg-white dark:hover:bg-gray-200'>Verify</Button>
+            <Button type="submit" className='w-full dark:bg-white dark:hover:bg-gray-200' disabled={isSubmitting}>
+              {isSubmitting ? (
+                <>
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  Please wait
+                </>
+              ) : (
+                'Verify'
+              )}
+            </Button>
           </form>
         </Form>
       </div>

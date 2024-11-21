@@ -62,7 +62,13 @@ export async function POST(request: Request) {
 
         await newUser.save();
       } catch (error) {
-        console.log("Error while Signing up user", error)
+        return Response.json(
+          {
+            success: false,
+            message: `Error while Signing up user: ${error}`,
+          },
+          { status: 500 }
+        );
       }
     }
 

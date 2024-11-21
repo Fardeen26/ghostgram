@@ -38,7 +38,7 @@ export const authOptions: NextAuthOptions = {
             throw new Error('Incorrect password');
           }
         } catch (err) {
-          throw new Error(err);
+          throw new Error(err as string);
         }
       },
     }),
@@ -46,7 +46,7 @@ export const authOptions: NextAuthOptions = {
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
-        token._id = user._id?.toString(); // Convert ObjectId to string
+        token._id = user._id?.toString();
         token.isVerified = user.isVerified;
         token.isAcceptingMessages = user.isAcceptingMessages;
         token.username = user.username;
@@ -66,7 +66,7 @@ export const authOptions: NextAuthOptions = {
   session: {
     strategy: 'jwt',
   },
-  secret: '3fHfIWXSqdBkyge/FFtvFe18CBUfOOA5vrgJgbrNtzA=',
+  secret: process.env.NEXT_AUTH_SECRET,
   pages: {
     signIn: '/sign-in',
   },

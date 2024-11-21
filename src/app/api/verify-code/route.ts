@@ -2,14 +2,12 @@ import dbConnect from '@/lib/dbConnect';
 import UserModel from '@/model/User';
 
 export async function POST(request: Request) {
-  // Connect to the database
   await dbConnect();
 
   try {
     const { username, code } = await request.json();
     const decodedUsername = decodeURIComponent(username);
     const user = await UserModel.findOne({ username: decodedUsername });
-    console.log("user", user)
     if (!user) {
       return Response.json(
         { success: false, message: 'User not found' },
@@ -22,7 +20,6 @@ export async function POST(request: Request) {
     const isCodeNotExpired = new Date(user.verifyCodeExpiry) > new Date();
 
     if (isCodeValid && isCodeNotExpired) {
-      // Update the user's verification status
       user.isVerified = true;
       await user.save();
 

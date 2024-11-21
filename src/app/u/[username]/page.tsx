@@ -131,12 +131,13 @@ export default function SendMessage() {
           <CardHeader className="text-center text-2xl font-semibold">
             Click on any message below to select it.
           </CardHeader>
-          <CardContent className="flex flex-col space-y-2">
+          <CardContent className="flex flex-col space-y-2 max-sm:space-y-4">
             {suggestedMessages.length > 0 ? (
               suggestedMessages.map((message, index) => (
                 <Button
                   key={index}
                   variant="outline"
+                  className='w-full text-wrap max-sm:h-16'
                   onClick={() => handleMessageClick(message)}
                 >
                   {message}

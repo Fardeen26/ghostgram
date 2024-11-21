@@ -27,6 +27,8 @@ export async function GET() {
 
     const result = await model.generateContent(prompt);
 
+    console.log("result is here", result);
+
     return Response.json(
       {
         success: true,
@@ -36,6 +38,7 @@ export async function GET() {
     );
 
   } catch (error) {
+    console.log("error is here", error)
     return Response.json(
       {
         success: true,

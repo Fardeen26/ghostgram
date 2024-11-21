@@ -24,7 +24,7 @@ export default function Home() {
             <br />
             Anonymous Feedback
           </h1>
-          <p className={`mt-5 text-lg text-gray-500 dark:text-gray-300 max-sm:!text-sm text-center tracking-normal leading-6 ${inter}`}>
+          <p className={`mt-5 text-lg max-sm:text-xs text-gray-500 dark:text-gray-300 text-center tracking-normal leading-6 ${inter}`}>
             GhostGram - Where your identity remains a secret.
           </p>
 
@@ -129,7 +129,7 @@ const ReviewCard = ({
 
 export function MarqueeComponent() {
   return (
-    <div className="relative flex h-[400px] w-full flex-col items-center justify-center overflow-hidden rounded-lg border-none bg-background">
+    <div className="relative flex h-[400px] max-sm:h-[300px] w-full flex-col items-center justify-center overflow-hidden rounded-lg border-none bg-background">
       <Marquee pauseOnHover className="[--duration:20s]">
         {firstRow.map((review) => (
           <ReviewCard key={review.username} {...review} />

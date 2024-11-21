@@ -112,7 +112,7 @@ function UserDashboard() {
   };
 
   return (
-    <div className={`mb-8 mx-4 md:mx-8 lg:mx-auto p-6 rounded w-full max-w-6xl ${bricolage_grotesque}`}>
+    <div className={`mb-8 mx-4 max-sm:mx-0 md:mx-8 lg:mx-auto p-6 rounded w-full max-w-6xl ${bricolage_grotesque}`}>
       <h1 className="text-4xl mt-4 font-bold text-center mb-5">User Dashboard</h1>
 
       <div className="mb-4">

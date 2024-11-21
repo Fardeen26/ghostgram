@@ -1,21 +1,14 @@
 'use client'
 
-import React from 'react';
+import React, { useState } from 'react';
 import axios, { AxiosError } from 'axios';
 import dayjs from 'dayjs';
-import { X } from 'lucide-react';
+import { Loader2, X } from 'lucide-react';
 import { Message } from '@/model/User';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardHeader, CardTitle } from '@/components/ui/card';
 
 import {
   AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog';
 import { Button } from './ui/button';
@@ -28,8 +21,10 @@ type MessageCardProps = {
 };
 
 export function MessageCard({ message, onMessageDelete }: MessageCardProps) {
+  const [isDeleting, setIsDeleting] = useState(false);
 
   const handleDeleteConfirm = async () => {
+    setIsDeleting(true)
     try {
       const response = await axios.delete<ApiResponse>(
         `/api/delete-message/${message._id}`
@@ -40,6 +35,8 @@ export function MessageCard({ message, onMessageDelete }: MessageCardProps) {
     } catch (error) {
       const axiosError = error as AxiosError<ApiResponse>;
       toast.error(axiosError.response?.data.message ?? 'Failed to delete message')
+    } finally {
+      setIsDeleting(false)
     }
   };
 
@@ -50,9 +47,13 @@ export function MessageCard({ message, onMessageDelete }: MessageCardProps) {
           <CardTitle>{message.content}</CardTitle>
           <AlertDialog>
             <AlertDialogTrigger asChild>
-              <Button className='p-0 bg-transparent text-gray-700 hover:text-black dark:text-gray-500 dark:hover:text-white hover:bg-transparent absolute right-3 top-0' onClick={handleDeleteConfirm}>
-                <X className="w-4 h-4 hover:scale-110" />
-              </Button>
+              {
+                isDeleting ? (<Loader2 className='animate-spin w-3 h-3 p-0 bg-transparent text-gray-700 hover:text-black dark:text-gray-500 dark:hover:text-white hover:bg-transparent absolute right-3 top-4' />) : (
+                  <Button className='p-0 bg-transparent text-gray-700 hover:text-black dark:text-gray-500 dark:hover:text-white hover:bg-transparent absolute right-3 top-0' onClick={handleDeleteConfirm}>
+                    <X className="w-4 h-4 hover:scale-110" />
+                  </Button>
+                )
+              }
             </AlertDialogTrigger>
           </AlertDialog>
         </div>
@@ -60,7 +61,6 @@ export function MessageCard({ message, onMessageDelete }: MessageCardProps) {
           {dayjs(message.createdAt).format('MMM D, YYYY h:mm A')}
         </div>
       </CardHeader>
-      <CardContent></CardContent>
     </Card>
   );
 }

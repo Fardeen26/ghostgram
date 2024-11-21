@@ -10,35 +10,43 @@ export const authOptions: NextAuthOptions = {
       id: 'credentials',
       name: 'Credentials',
       credentials: {
-        email: { label: 'Email', type: 'text' },
+        identifier: { label: 'Identifier', type: 'text' },
         password: { label: 'Password', type: 'password' },
       },
-      async authorize(credentials: any): Promise<void> {
+      async authorize(credentials: any): Promise<any> {
         await dbConnect();
+
+        if (!credentials || !credentials.identifier || !credentials.password) {
+          throw new Error('Missing credentials');
+        }
+
         try {
-          const user = await UserModel.findOne({
+          const query = {
             $or: [
-              { email: credentials.identifier },
               { username: credentials.identifier },
+              { email: credentials.identifier },
             ],
-          });
+          };
+
+          const user = await UserModel.findOne(query).lean();
+
           if (!user) {
-            throw new Error('No user found with this email');
+            throw new Error('User not found');
           }
+
           if (!user.isVerified) {
             throw new Error('Please verify your account before logging in');
           }
-          const isPasswordCorrect = await bcrypt.compare(
-            credentials.password,
-            user.password
-          );
+
+          const isPasswordCorrect = await bcrypt.compare(credentials.password, user.password);
+
           if (isPasswordCorrect) {
             return user;
           } else {
             throw new Error('Incorrect password');
           }
-        } catch (err) {
-          throw new Error(err as string);
+        } catch (err: any) {
+          throw new Error(err.message || 'Internal server error');
         }
       },
     }),

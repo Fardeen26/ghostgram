@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils";
 import { AnimatedList } from "./ui/animated-list";
+import { bricolage_grotesque } from "@/lib/fonts";
 
 interface Item {
     name: string;
@@ -12,7 +13,7 @@ interface Item {
 
 let notifications = [
     {
-        name: "Payment received",
+        name: "What skill are you most excited to master in the next year?",
         description: "GhostGram",
         time: "15m ago",
 
@@ -20,26 +21,33 @@ let notifications = [
         color: "#00C9A7",
     },
     {
-        name: "User signed up",
+        name: "What kind of positive impact do you hope to make on the world in the future?",
         description: "GhostGram",
         time: "10m ago",
         icon: "👤",
         color: "#FFB800",
     },
     {
-        name: "New message",
+        name: "What's a skill you're secretly proud of mastering?",
         description: "GhostGram",
         time: "5m ago",
         icon: "💬",
         color: "#FF3D71",
     },
     {
-        name: "New event",
+        name: "If you could instantly learn any new language, which would you choose and why?",
         description: "GhostGram",
         time: "2m ago",
         icon: "🗞️",
         color: "#1E86FF",
     },
+    {
+        name: "What's one small thing you do daily that brings you consistent joy?",
+        description: "GhostGram",
+        time: "36m ago",
+        icon: "❔",
+        color: "#FFFFFF",
+    }
 ];
 
 notifications = Array.from({ length: 10 }, () => notifications).flat();
@@ -67,7 +75,7 @@ const Notification = ({ name, description, icon, color, time }: Item) => {
                 >
                     <span className="text-lg">{icon}</span>
                 </div>
-                <div className="flex flex-col overflow-hidden">
+                <div className={`flex flex-col overflow-hidden ${bricolage_grotesque}`}>
                     <figcaption className="flex flex-row items-center whitespace-pre text-lg font-medium">
                         <span className="text-sm sm:text-lg">{name}</span>
                         <span className="mx-1">·</span>

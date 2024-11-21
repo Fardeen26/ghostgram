@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { NextAuthOptions } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import bcrypt from 'bcryptjs';
@@ -46,7 +47,7 @@ export const authOptions: NextAuthOptions = {
             throw new Error('Incorrect password');
           }
         } catch (err: any) {
-          throw new Error(err.message || 'Internal server error');
+          throw new Error(err || 'Internal server error');
         }
       },
     }),

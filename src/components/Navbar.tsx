@@ -4,7 +4,6 @@ import React from 'react';
 import Link from 'next/link';
 import { useSession, signOut } from 'next-auth/react';
 import { Button } from './ui/button';
-import { User } from 'next-auth';
 import { bricolage_grotesque } from '@/lib/fonts';
 import Image from 'next/image';
 import { useDarkMode } from '@/hooks/useDarkMode';
@@ -13,7 +12,6 @@ import { MoonIcon, SunIcon } from 'lucide-react';
 function Navbar() {
   const { isDarkMode, toggleDarkMode } = useDarkMode();
   const { data: session } = useSession();
-  const user: User = session?.user;
 
   return (
     <nav className={`p-4 md:p-6 ${bricolage_grotesque}`}>

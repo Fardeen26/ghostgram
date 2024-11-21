@@ -10,7 +10,7 @@ export async function sendVerificationEmail(
   try {
     const htmlContent = customerMailTemplate(username, verifyCode);
 
-    const info = await transporter.sendMail({
+    await transporter.sendMail({
       from: process.env.SENDER_EMAIL,
       to: email,
       subject: "GhostGram, Verification Code",

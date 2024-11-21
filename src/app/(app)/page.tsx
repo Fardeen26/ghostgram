@@ -4,11 +4,11 @@ import { cn } from "@/lib/utils";
 import Marquee from "@/components/ui/marquee";
 import { bricolage_grotesque, inter } from "@/lib/fonts";
 import { RainbowButton } from "@/components/ui/rainbow-button";
-import Image from "next/image";
 import Link from "next/link";
 import { RiArrowRightSLine } from "react-icons/ri";
 import { AnimatedListDemo } from "@/components/AnimateListComponent";
 import { useSession } from 'next-auth/react';
+import Image from "next/image";
 
 
 export default function Home() {
@@ -114,7 +114,7 @@ const ReviewCard = ({
       )}
     >
       <div className="flex flex-row items-center gap-2">
-        <img className="rounded-full" width="32" height="32" alt="" src={img} />
+        <Image src={img} alt="logo" width={35} height={35} className="rounded-full" />
         <div className="flex flex-col">
           <figcaption className="text-sm font-medium dark:text-white">
             {name}

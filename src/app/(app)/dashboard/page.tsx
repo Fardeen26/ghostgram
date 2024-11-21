@@ -76,7 +76,6 @@ function UserDashboard() {
     [setIsLoading, setMessages]
   );
 
-  // Fetch initial state from the server
   useEffect(() => {
     if (!session || !session.user) return;
 
@@ -85,7 +84,6 @@ function UserDashboard() {
     fetchAcceptMessages();
   }, [session, setValue, fetchAcceptMessages, fetchMessages]);
 
-  // Handle switch change
   const handleSwitchChange = async () => {
     try {
       const response = await axios.post<ApiResponse>('/api/accept-messages', {
@@ -162,17 +160,22 @@ function UserDashboard() {
       </div>
 
       <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-6">
-        {messages.length > 0 ? (
-          messages.map((message, index) => (
-            <MessageCard
-              key={index + 1}
-              message={message}
-              onMessageDelete={handleDeleteMessage}
-            />
-          ))
-        ) : (
-          <p>No messages to display.</p>
-        )}
+
+        {
+          isLoading ? <Loader2 className='animate-spin w-8 h-8 ' />
+            :
+            messages.length > 0 ? (
+              messages.map((message, index) => (
+                <MessageCard
+                  key={index + 1}
+                  message={message}
+                  onMessageDelete={handleDeleteMessage}
+                />
+              ))
+            ) : (
+              <p>No messages to display.</p>
+            )
+        }
       </div>
     </div>
   );

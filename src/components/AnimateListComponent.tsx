@@ -68,7 +68,7 @@ const Notification = ({ name, description, icon, color, time }: Item) => {
         >
             <div className="flex flex-row items-center gap-3">
                 <div
-                    className="flex size-10 items-center justify-center rounded-2xl"
+                    className="flex size-10 max-sm:p-4 items-center justify-center rounded-2xl"
                     style={{
                         backgroundColor: color,
                     }}
@@ -76,9 +76,9 @@ const Notification = ({ name, description, icon, color, time }: Item) => {
                     <span className="text-lg">{icon}</span>
                 </div>
                 <div className={`flex flex-col overflow-hidden ${bricolage_grotesque}`}>
-                    <figcaption className="flex flex-row items-center whitespace-pre text-lg font-medium">
-                        <span className="text-sm sm:text-lg">{name}</span>
-                        <span className="mx-1">·</span>
+                    <figcaption className="flex flex-row max-sm:flex-col items-center max-sm:justify-start max-sm:items-start whitespace-pre text-lg font-medium">
+                        <span className="text-sm whitespace-normal max-sm:font-semibold sm:text-lg">{name}</span>
+                        <span className="mx-1 max-sm:hidden">·</span>
                         <span className="text-xs text-gray-500">{time}</span>
                     </figcaption>
                     <p className="text-sm font-normal">
@@ -98,7 +98,7 @@ export function AnimatedListDemo({
     return (
         <div
             className={cn(
-                "relative flex h-[500px] w-full flex-col p-6 overflow-hidden rounded-lg",
+                "relative flex h-[500px] max-sm:h-[560px] w-full flex-col p-6 overflow-hidden rounded-lg",
                 className,
             )}
         >

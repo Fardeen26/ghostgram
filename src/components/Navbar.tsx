@@ -16,9 +16,9 @@ function Navbar() {
   return (
     <nav className={`p-4 md:p-6 ${bricolage_grotesque}`}>
       <div className="container mx-auto flex md:flex-row justify-between items-center">
-        <a href="/" className={`text-2xl max-sm:text-xl font-bold max-sm:mb-0 mb-4 md:mb-0 flex space-x-0 dark:space-x-[2px]`}>
+        <a href="/" className={`text-2xl max-sm:text-lg font-bold max-sm:mb-0 mb-4 md:mb-0 flex space-x-0 dark:space-x-[2px]`}>
           <span>
-            <Image src={'/ghostgram-logo.png'} alt='logo' height={30} width={30} className='rounded-xl max-sm:h-7 max-sm:w-7' />
+            <Image src={'/ghostgram-logo.png'} alt='logo' height={30} width={30} className='rounded-xl max-sm:h-6 max-sm:w-6' />
           </span>
           <span>
             hostGram
@@ -36,13 +36,13 @@ function Navbar() {
           </div>
           {session ? (
 
-            <Button onClick={() => signOut()} className="w-full md:w-auto dark:bg-white dark:text-black dark:hover:bg-gray-200 bg-black text-white hover:bg-gray-800 hover:text-white rounded-full px-8 h-8" variant='outline'>
+            <Button onClick={() => signOut()} className="w-full md:w-auto dark:bg-white dark:text-black dark:hover:bg-gray-200 bg-black text-white hover:bg-gray-800 hover:text-white rounded-full px-8 h-8 max-sm:px-4 max-sm:h-7" variant='outline'>
               Logout
             </Button>
 
           ) : (
             <Link href="/sign-in">
-              <Button className="w-full dark:bg-white dark:text-black dark:hover:bg-gray-200 bg-black text-white hover:bg-gray-800 hover:text-white rounded-full px-8 h-8" variant={'outline'}>Login</Button>
+              <Button className="w-full dark:bg-white dark:text-black dark:hover:bg-gray-200 bg-black text-white hover:bg-gray-800 hover:text-white rounded-full px-8 h-8 max-sm:px-4 max-sm:h-7" variant={'outline'}>Login</Button>
             </Link>
           )}
         </div>

@@ -15,7 +15,7 @@ export default function Home() {
 
   return (
     <>
-      <main className="flex-grow flex flex-col items-center justify-center h-[60vh]">
+      <main className="flex-grow flex flex-col items-center justify-center h-[60vh] max-sm:h-[42vh]">
         <section className="text-center flex flex-col items-center justify-end">
           <h1 className={`text-3xl md:text-7xl font-bold ${bricolage_grotesque}`}>
             Dive into the World of
@@ -39,8 +39,8 @@ export default function Home() {
         <MarqueeComponent />
       </div>
 
-      <div className="space-y-4 mt-32 pb-10">
-        <h2 className={`text-center text-3xl md:text-5xl font-bold ${bricolage_grotesque}`}>Receive Instant Feedbacks</h2>
+      <div className="space-y-4 mt-32 max-sm:mt-20 pb-10 max-sm:pb-20">
+        <h2 className={`text-center text-2xl md:text-5xl font-bold ${bricolage_grotesque}`}>Receive Instant Feedbacks</h2>
         <AnimatedListDemo />
       </div>
     </>

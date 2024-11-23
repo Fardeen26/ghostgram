@@ -70,13 +70,13 @@ const ReviewCard = ({
             <div className="flex flex-row items-center gap-2">
                 <Image src={img} alt="logo" width={35} height={35} className="rounded-full" />
                 <div className="flex flex-col">
-                    <figcaption className="text-sm font-medium dark:text-white">
+                    <figcaption className="text-sm max-sm:text-xs font-medium dark:text-white">
                         {name}
                     </figcaption>
                     <p className="text-xs font-medium dark:text-white/40">{username}</p>
                 </div>
             </div>
-            <blockquote className="mt-2 text-sm">{body}</blockquote>
+            <blockquote className="mt-2 text-sm max-sm:text-xs">{body}</blockquote>
         </figure>
     );
 };
@@ -84,7 +84,7 @@ const ReviewCard = ({
 
 export default function MarqueeComponent() {
     return (
-        <div className="relative flex h-[400px] max-sm:h-[300px] w-full flex-col items-center justify-center overflow-hidden rounded-lg border-none bg-background">
+        <div className="relative flex h-[400px] max-sm:h-[270px] w-full flex-col items-center justify-center overflow-hidden rounded-lg border-none bg-background">
             <Marquee pauseOnHover className="[--duration:20s]">
                 {firstRow.map((review) => (
                     <ReviewCard key={review.username} {...review} />

@@ -16,11 +16,11 @@ function Navbar() {
   return (
     <nav className={`p-4 md:p-6 ${bricolage_grotesque}`}>
       <div className="container mx-auto flex md:flex-row justify-between items-center">
-        <a href="/" className={`text-2xl max-sm:text-lg font-bold max-sm:mb-0 mb-4 md:mb-0 flex space-x-0 dark:space-x-[2px]`}>
+        <a href="/" className={`text-2xl max-sm:text-lg font-bold max-sm:mb-0 mb-4 md:mb-0 flex max-sm:items-center`}>
           <span>
-            <Image src={'/ghostgram-logo.png'} alt='logo' height={30} width={30} className='rounded-xl max-sm:h-6 max-sm:w-6' />
+            <Image src={'/letter-g.png'} alt='logo' height={30} width={30} className='rounded-xl max-sm:h-6 max-sm:w-6' />
           </span>
-          <span>
+          <span className='ml-[-3px]'>
             hostGram
           </span>
         </a>

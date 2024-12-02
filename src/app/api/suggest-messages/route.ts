@@ -1,5 +1,9 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
+export const config = {
+  runtime: 'edge',
+};
+
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY ?? '');
 const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
@@ -25,21 +29,41 @@ export async function GET() {
 
     const result = await model.generateContent(prompt);
 
-    return Response.json(
-      {
+    return new Response(
+      JSON.stringify({
         success: true,
         message: result.response.text(),
-      },
-      { status: 200 }
+      }),
+      {
+        status: 200,
+        headers: {
+          'Content-Type': 'application/json',
+          'Cache-Control': 'no-store', // Prevent caching
+        },
+      }
     );
 
+    // return Response.json(
+    //   {
+    //     success: true,
+    //     message: result.response.text(),
+    //   },
+    //   { status: 200 }
+    // );
+
   } catch (error) {
-    return Response.json(
+    return new Response(
+      JSON.stringify({
+        success: false,
+        message: 'Error while generating the messages!',
+      }),
       {
-        success: true,
-        message: "Error while generating the messages!",
-      },
-      { status: 500 }
+        status: 500,
+        headers: {
+          'Content-Type': 'application/json',
+          'Cache-Control': 'no-store',
+        },
+      }
     );
   }
 }

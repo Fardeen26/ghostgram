@@ -1,3 +1,4 @@
+import Footer from "@/components/Footer"
 import PublicPageNavbar from "./[username]/components/PublicPageNavbar"
 
 export const metadata = {
@@ -14,6 +15,7 @@ export default function RootLayout({
         <>
             <PublicPageNavbar />
             {children}
+            <Footer />
         </>
     )
 }

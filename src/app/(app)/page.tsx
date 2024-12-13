@@ -20,7 +20,7 @@ export default function Home() {
           <h1 className={`text-3xl md:text-7xl font-bold ${bricolage_grotesque}`}>
             Dive into the World of
             <br />
-            Anonymous Feedback
+            Anonymous Messages
           </h1>
           <p className={`mt-5 text-lg max-sm:text-xs text-gray-500 dark:text-gray-300 text-center tracking-normal leading-6 ${inter}`}>
             GhostGram - Where your identity remains a secret.
@@ -40,7 +40,7 @@ export default function Home() {
       </div>
 
       <div className="space-y-4 mt-32 max-sm:mt-20 pb-10 max-sm:pb-20">
-        <h2 className={`text-center text-2xl md:text-5xl font-bold ${bricolage_grotesque}`}>Receive Instant Feedbacks</h2>
+        <h2 className={`text-center text-2xl md:text-5xl font-bold ${bricolage_grotesque}`}>Receive Instant Messages</h2>
         <AnimatedListDemo />
       </div>
     </>

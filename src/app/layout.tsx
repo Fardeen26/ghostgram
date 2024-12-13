@@ -6,7 +6,7 @@ import DarkModeProvider from '@/context/DarkModeContext';
 
 export const metadata: Metadata = {
   title: 'GhostGram',
-  description: 'Real feedback from real people.',
+  description: 'Real Message from real people.',
 };
 
 interface RootLayoutProps {

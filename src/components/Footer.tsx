@@ -21,15 +21,15 @@ export default function Footer() {
                     <span>
                         Designed and Developed by
                     </span>
-                    <Link href={'https://x.com/fardeen14693425'} className="underline text-orange-500 dark:text-orange-300">
+                    <Link href={'https://x.com/fardeen14693425'} target="_blank" className="underline text-orange-500 dark:text-orange-300">
                         Fardeen
                     </Link>
                 </div>
                 <div className="flex gap-2">
-                    <Link href={'https://github.com/Fardeen26/ghostgram'}>
+                    <Link href={'https://github.com/Fardeen26/ghostgram'} target="_blank">
                         <RiGithubFill className="h-5 w-5 hover:fill-orange-500 dark:hover:fill-orange-300" />
                     </Link>
-                    <Link href={'https://x.com/fardeen14693425'}>
+                    <Link href={'https://x.com/fardeen14693425'} target="_blank">
                         <RiTwitterFill className="h-5 w-5 hover:fill-orange-500 dark:hover:fill-orange-300" />
                     </Link>
                 </div>
